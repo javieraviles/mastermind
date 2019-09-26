@@ -30,7 +30,7 @@ public class Game {
 		final DecodingBoard decodingBoard = new DecodingBoard();
 		final CodeMaker codeMaker = new CodeMaker(gameConfig.getRowLength());
 		final CodeBreaker codeBreaker = new CodeBreaker();
-		String guess = "";
+		String guessString = "";
 
 		do {
 			decodingBoard.clear();
@@ -42,14 +42,14 @@ public class Game {
 				System.out.println(ATTEMPT_SEPARATOR);
 				System.out.println(MSG_GUESS_PROPOSAL);
 
-				guess = generateValidGuess(codeBreaker);
+				guessString = generateValidGuess(codeBreaker);
 
 				System.out.println(i + ATTEMPT_TAG);
 
 				// check guess against pattern and give feedback to code breaker
-				final List<CodePeg> guessAsList = Utils.convertGuessToCodePegList(guess);
-				final Map<KeyPeg, Integer> guessFeedback = codeMaker.compareGuessWithPattern(guessAsList);
-				decodingBoard.fillRow(Utils.formatFeedback(guess, guessFeedback));
+				final List<CodePeg> guessList = Utils.convertGuessToCodePegList(guessString);
+				final Map<KeyPeg, Integer> guessFeedback = codeMaker.compareGuessWithPattern(guessList);
+				decodingBoard.fillRow(Utils.formatFeedback(guessString, guessFeedback));
 				decodingBoard.printDecodingBoard();
 
 				// check whether the user has already won or lost

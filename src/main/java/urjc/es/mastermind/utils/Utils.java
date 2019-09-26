@@ -24,12 +24,12 @@ public class Utils {
 				+ WHITE_TAG;
 	}
 
-	public static List<CodePeg> convertGuessToCodePegList(final String guess) {
-		final List<CodePeg> guessAsList = new ArrayList<>();
-		for (String codePeg : guess.split("")) {
-			guessAsList.add(CodePeg.valueOf(codePeg));
+	public static List<CodePeg> convertGuessToCodePegList(final String guessString) {
+		final List<CodePeg> guessList = new ArrayList<>();
+		for (String codePeg : guessString.split("")) {
+			guessList.add(CodePeg.valueOf(codePeg));
 		}
-		return guessAsList;
+		return guessList;
 	}
 
 	// return the error detected in a guess, empty if none.
@@ -40,8 +40,8 @@ public class Utils {
 		}
 
 		// cast guess to a Set of Characters, then check length again
-		final Set<Character> guessAsSet = guess.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
-		if (guessAsSet.size() != rowLength) {
+		final Set<Character> guessSet = guess.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
+		if (guessSet.size() != rowLength) {
 			return MSG_GUESS_DUPLICATE_COLORS;
 		}
 

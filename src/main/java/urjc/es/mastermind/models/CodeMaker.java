@@ -25,17 +25,17 @@ public class CodeMaker {
 		return Collections.unmodifiableList(pattern);
 	}
 
-	public Map<KeyPeg, Integer> compareGuessWithPattern(final List<CodePeg> guessAsList) {
+	public Map<KeyPeg, Integer> compareGuessWithPattern(final List<CodePeg> guessList) {
 
 		final Map<KeyPeg, Integer> guessFeedback = new HashMap<>();
 		int sameColorAndPosition = 0;
 		int sameColor = 0;
 
 		for (int i = 0; i < rowLength; i++) {
-			if (pattern.get(i).equals(guessAsList.get(i))) {
+			if (pattern.get(i).equals(guessList.get(i))) {
 				sameColorAndPosition++;
 			}
-			if (pattern.contains(guessAsList.get(i))) {
+			if (pattern.contains(guessList.get(i))) {
 				sameColor++;
 			}
 		}
