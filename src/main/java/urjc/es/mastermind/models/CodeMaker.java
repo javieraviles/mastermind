@@ -1,4 +1,4 @@
-package urjc.es.mastermind;
+package urjc.es.mastermind.models;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import urjc.es.mastermind.enums.CodePeg;
-import urjc.es.mastermind.enums.KeyPeg;
+import urjc.es.mastermind.types.CodePeg;
+import urjc.es.mastermind.types.KeyPeg;
 
 public class CodeMaker {
 
@@ -17,6 +17,7 @@ public class CodeMaker {
 	private List<CodePeg> pattern;
 
 	public CodeMaker(final int rowLength) {
+		super();
 		this.rowLength = rowLength;
 	}
 

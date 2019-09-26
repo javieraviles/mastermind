@@ -1,4 +1,4 @@
-package urjc.es.mastermind;
+package urjc.es.mastermind.models;
 
 import static urjc.es.mastermind.utils.MessageDialogs.ATTEMPT_SEPARATOR;
 import static urjc.es.mastermind.utils.MessageDialogs.ATTEMPT_TAG;
@@ -11,34 +11,34 @@ import static urjc.es.mastermind.utils.MessageDialogs.MSG_WIN;
 import java.util.List;
 import java.util.Map;
 
-import urjc.es.mastermind.enums.CodePeg;
-import urjc.es.mastermind.enums.KeyPeg;
+import urjc.es.mastermind.types.CodePeg;
+import urjc.es.mastermind.types.GameConfig;
+import urjc.es.mastermind.types.KeyPeg;
 import urjc.es.mastermind.utils.Utils;
 
 public class Game {
 
-	private int maxAttempts;
-	private int rowLength;
+	final GameConfig gameConfig;
 
-	public Game(final int maxAttempts, final int rowLength) {
-		this.maxAttempts = maxAttempts;
-		this.rowLength = rowLength;
+	public Game(final GameConfig gameConfig) {
+		super();
+		this.gameConfig = gameConfig;
 	}
 
 	public void start() {
 
 		final DecodingBoard decodingBoard = new DecodingBoard();
-		final CodeMaker codeMaker = new CodeMaker(rowLength);
+		final CodeMaker codeMaker = new CodeMaker(gameConfig.getRowLength());
 		final CodeBreaker codeBreaker = new CodeBreaker();
 		String guess = "";
-		
+
 		do {
 			decodingBoard.clear();
 			codeMaker.generatePattern();
 
 			System.out.println(GAME_TITLE);
 
-			for (int i = 1; i <= maxAttempts; i++) {
+			for (int i = 1; i <= gameConfig.getMaxAttempts(); i++) {
 				System.out.println(ATTEMPT_SEPARATOR);
 				System.out.println(MSG_GUESS_PROPOSAL);
 
@@ -53,10 +53,10 @@ public class Game {
 				decodingBoard.printDecodingBoard();
 
 				// check whether the user has already won or lost
-				if (isWinner(guessFeedback)) {
+				if (checkIfWinner(guessFeedback)) {
 					System.out.println(MSG_WIN);
 					break;
-				} else if (isLooser(i)) {
+				} else if (checkIfLooser(i)) {
 					System.out.println(MSG_LOSE);
 				}
 			}
@@ -74,17 +74,17 @@ public class Game {
 				System.out.println(guessError);
 			}
 			guess = codeBreaker.introduceGuess();
-			guessError = Utils.validateGuess(guess, rowLength);
+			guessError = Utils.validateGuess(guess, gameConfig.getRowLength());
 		} while (!guessError.isEmpty());
 		return guess;
 	}
-	
-	private boolean isWinner(final Map<KeyPeg, Integer> guessFeedback) {
-		return guessFeedback.get(KeyPeg.b) == rowLength;
+
+	private boolean checkIfWinner(final Map<KeyPeg, Integer> guessFeedback) {
+		return guessFeedback.get(KeyPeg.b) == gameConfig.getRowLength();
 	}
-	
-	private boolean isLooser(final int numberOfAttempts) {
-		return numberOfAttempts == maxAttempts;
+
+	private boolean checkIfLooser(final int numberOfAttempts) {
+		return numberOfAttempts == gameConfig.getMaxAttempts();
 	}
 
 }

@@ -1,4 +1,4 @@
-package urjc.es.mastermind;
+package urjc.es.mastermind.models;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ public class DecodingBoard {
 	private List<String> rows;
 
 	public DecodingBoard() {
+		super();
 	}
 
 	public void fillRow(final String row) {
@@ -18,7 +19,7 @@ public class DecodingBoard {
 			System.out.println(row);
 		}
 	}
-	
+
 	public void clear() {
 		rows.clear();
 	}

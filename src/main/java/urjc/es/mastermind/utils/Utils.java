@@ -14,8 +14,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import urjc.es.mastermind.enums.CodePeg;
-import urjc.es.mastermind.enums.KeyPeg;
+import urjc.es.mastermind.types.CodePeg;
+import urjc.es.mastermind.types.KeyPeg;
 
 public class Utils {
 
