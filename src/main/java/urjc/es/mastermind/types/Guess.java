@@ -4,13 +4,14 @@ import static urjc.es.mastermind.utils.MessageDialogs.MSG_GUESS_DUPLICATE_COLORS
 import static urjc.es.mastermind.utils.MessageDialogs.MSG_GUESS_WRONG_COLORS;
 import static urjc.es.mastermind.utils.MessageDialogs.MSG_GUESS_WRONG_LENGTH;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Guess {
-	
+
 	private String stringValue;
 	private List<CodePeg> value;
 	private String errorInGuess;
@@ -19,7 +20,8 @@ public class Guess {
 	public Guess(final String stringValue, final int rowLength) {
 		this.stringValue = stringValue;
 		this.rowLength = rowLength;
-		validate();
+		this.value = new ArrayList<>();
+		this.errorInGuess = validate();
 	}
 
 	public String getStringValue() {
@@ -35,16 +37,16 @@ public class Guess {
 	}
 
 	// fill the error detected in a string guess, create a typed guess if none.
-	private void validate() {
+	private String validate() {
 
 		if (stringValue.length() != rowLength) {
-			errorInGuess = MSG_GUESS_WRONG_LENGTH;
+			return MSG_GUESS_WRONG_LENGTH;
 		}
 
 		// cast guess to a Set of Characters, then check length again
 		final Set<Character> guessSet = stringValue.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
 		if (guessSet.size() != rowLength) {
-			errorInGuess = MSG_GUESS_DUPLICATE_COLORS;
+			return MSG_GUESS_DUPLICATE_COLORS;
 		}
 
 		// every Char in a guess should be a valid CodePeg
@@ -53,10 +55,12 @@ public class Guess {
 				CodePeg.valueOf(possibleCodePeg);
 			}
 		} catch (final IllegalArgumentException e) {
-			errorInGuess = MSG_GUESS_WRONG_COLORS + Arrays.asList(CodePeg.values());
+			return MSG_GUESS_WRONG_COLORS + Arrays.asList(CodePeg.values());
 		}
 
 		convertGuessToCodePegList();
+		return "";
+
 	}
 
 	private List<CodePeg> convertGuessToCodePegList() {

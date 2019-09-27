@@ -1,5 +1,6 @@
 package urjc.es.mastermind.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -18,6 +19,7 @@ public class CodeMaker {
 	public CodeMaker(final int rowLength) {
 		super();
 		this.rowLength = rowLength;
+		this.pattern = new ArrayList<>();
 	}
 
 	public List<CodePeg> getPattern() {

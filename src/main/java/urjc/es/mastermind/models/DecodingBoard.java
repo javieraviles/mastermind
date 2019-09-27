@@ -1,5 +1,6 @@
 package urjc.es.mastermind.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DecodingBoard {
@@ -8,6 +9,7 @@ public class DecodingBoard {
 
 	public DecodingBoard() {
 		super();
+		rows = new ArrayList<>();
 	}
 
 	public void fillRow(final String row) {
