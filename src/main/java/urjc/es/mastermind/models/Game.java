@@ -61,7 +61,7 @@ public class Game {
 
 	private void announceAttempts(int i) {
 		final String[] attemptsMessage = { String.valueOf(i), ATTEMPT_TAG };
-		System.out.println(attemptsMessage);
+		System.out.println(String.join(" ", attemptsMessage));
 	}
 
 	private boolean checkIfWinner(final int numberOfBlacks) {
