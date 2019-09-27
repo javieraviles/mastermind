@@ -8,13 +8,9 @@ import static urjc.es.mastermind.utils.MessageDialogs.MSG_GUESS_PROPOSAL;
 import static urjc.es.mastermind.utils.MessageDialogs.MSG_LOSE;
 import static urjc.es.mastermind.utils.MessageDialogs.MSG_WIN;
 
-import java.util.List;
-import java.util.Map;
-
-import urjc.es.mastermind.types.CodePeg;
 import urjc.es.mastermind.types.GameConfig;
-import urjc.es.mastermind.types.KeyPeg;
-import urjc.es.mastermind.utils.Utils;
+import urjc.es.mastermind.types.Guess;
+import urjc.es.mastermind.types.GuessFeedback;
 
 public class Game {
 
@@ -29,8 +25,7 @@ public class Game {
 
 		final DecodingBoard decodingBoard = new DecodingBoard();
 		final CodeMaker codeMaker = new CodeMaker(gameConfig.getRowLength());
-		final CodeBreaker codeBreaker = new CodeBreaker();
-		String guessString = "";
+		final CodeBreaker codeBreaker = new CodeBreaker(gameConfig.getRowLength());
 
 		do {
 			decodingBoard.clear();
@@ -42,18 +37,17 @@ public class Game {
 				System.out.println(ATTEMPT_SEPARATOR);
 				System.out.println(MSG_GUESS_PROPOSAL);
 
-				guessString = generateValidGuess(codeBreaker);
+				final Guess guess = codeBreaker.generateValidGuess();
 
-				System.out.println(i + ATTEMPT_TAG);
+				announceAttempts(i);
 
-				// check guess against pattern and give feedback to code breaker
-				final List<CodePeg> guessList = Utils.convertGuessToCodePegList(guessString);
-				final Map<KeyPeg, Integer> guessFeedback = codeMaker.compareGuessWithPattern(guessList);
-				decodingBoard.fillRow(Utils.formatFeedback(guessString, guessFeedback));
+				// match guess against pattern and give feedback to code breaker
+				final GuessFeedback guessFeedback = codeMaker.compareGuessWithPattern(guess.getValue());
+				decodingBoard.fillRow(guessFeedback.formatMessage(guess.getStringValue()));
 				decodingBoard.printDecodingBoard();
 
 				// check whether the user has already won or lost
-				if (checkIfWinner(guessFeedback)) {
+				if (checkIfWinner(guessFeedback.getBlacks())) {
 					System.out.println(MSG_WIN);
 					break;
 				} else if (checkIfLooser(i)) {
@@ -65,22 +59,13 @@ public class Game {
 		} while (codeBreaker.askToPlayAgain());
 	}
 
-	// ask the code breaker to insert a guess until complies with rules
-	private String generateValidGuess(final CodeBreaker codeBreaker) {
-		String guess;
-		String guessError = "";
-		do {
-			if (!guessError.isEmpty()) {
-				System.out.println(guessError);
-			}
-			guess = codeBreaker.introduceGuess();
-			guessError = Utils.validateGuess(guess, gameConfig.getRowLength());
-		} while (!guessError.isEmpty());
-		return guess;
+	private void announceAttempts(int i) {
+		final String[] attemptsMessage = { String.valueOf(i), ATTEMPT_TAG };
+		System.out.println(attemptsMessage);
 	}
 
-	private boolean checkIfWinner(final Map<KeyPeg, Integer> guessFeedback) {
-		return guessFeedback.get(KeyPeg.b) == gameConfig.getRowLength();
+	private boolean checkIfWinner(final int numberOfBlacks) {
+		return numberOfBlacks == gameConfig.getRowLength();
 	}
 
 	private boolean checkIfLooser(final int numberOfAttempts) {

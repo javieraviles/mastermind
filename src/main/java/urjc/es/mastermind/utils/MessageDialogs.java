@@ -4,10 +4,10 @@ public final class MessageDialogs {
 
 	public static final String GAME_TITLE = "----- MASTERMIND -----";
 	public static final String ATTEMPT_SEPARATOR = "****";
-	public static final String ATTEMPT_TAG = " attempt(s):";
-	public static final String ARROW_TAG = " --> ";
-	public static final String BLACK_TAG = " black(s)";
-	public static final String WHITE_TAG = " white(s)";
+	public static final String ATTEMPT_TAG = "attempt(s):";
+	public static final String ARROW_TAG = "-->";
+	public static final String BLACK_TAG = "black(s)";
+	public static final String WHITE_TAG = "white(s)";
 	public static final String MSG_GUESS_PROPOSAL = "Propose a combination: ";
 	public static final String MSG_GUESS_WRONG_COLORS = "Wrong colors, they must be: ";
 	public static final String MSG_GUESS_DUPLICATE_COLORS = "Repeated colors";

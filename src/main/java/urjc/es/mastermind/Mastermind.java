@@ -11,7 +11,6 @@ public class Mastermind {
 
 		final GameConfig gameConfig = new GameConfig(MAX_ATTEMPTS, ROW_LENGTH);
 
-		final Game game = new Game(gameConfig);
-		game.start();
+		new Game(gameConfig).start();
 	}
 }
