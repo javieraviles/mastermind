@@ -1,0 +1,1 @@
+![UML diagram](images/uml.svg?raw=true "UML diagram")

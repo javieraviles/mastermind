@@ -3,7 +3,6 @@ package urjc.es.mastermind.utils;
 public final class MessageDialogs {
 
 	public static final String GAME_TITLE = "----- MASTERMIND -----";
-	public static final String ATTEMPT_SEPARATOR = "****";
 	public static final String ATTEMPT_TAG = "attempt(s):";
 	public static final String ARROW_TAG = "-->";
 	public static final String BLACK_TAG = "black(s)";
