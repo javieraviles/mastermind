@@ -1,2 +1,2 @@
-# Mastermind UML diagram
-<img src="./images/uml.svg">
+# Mastermind class diagram
+<img src="./images/class_diagram.svg">
