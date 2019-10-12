@@ -1,21 +1,20 @@
 package urjc.es.mastermind.controllers;
 
-import urjc.es.mastermind.models.Game;
-import urjc.es.mastermind.models.State;
+import urjc.es.mastermind.models.Session;
 
-public class StartController extends Controller {
+public class StartController extends AcceptorController {
 
-	public StartController(Game game, State state) {
-		super(game, state);
+	public StartController(Session session) {
+		super(session);
+	}
+
+	public void start() {
+		this.session.next();
 	}
 
 	@Override
 	public void accept(ControllerVisitor controllerVisitor) {
 		controllerVisitor.visit(this);
-	}
-
-	public void start() {
-		this.state.next();
 	}
 
 }

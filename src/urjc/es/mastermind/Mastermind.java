@@ -1,8 +1,8 @@
 package urjc.es.mastermind;
 
+import urjc.es.mastermind.controllers.AcceptorController;
 import urjc.es.mastermind.controllers.Controller;
 import urjc.es.mastermind.controllers.Logic;
-import urjc.es.mastermind.views.ConsoleView;
 import urjc.es.mastermind.views.View;
 
 public class Mastermind {
@@ -12,17 +12,17 @@ public class Mastermind {
 
 	protected Mastermind() {
 		this.logic = new Logic();
-		this.view = new ConsoleView();
+		this.view = new View();
 	}
 
 	protected void play() {
-		Controller controller;
+		AcceptorController acceptorController;
 		do {
-			controller = this.logic.getController();
-			if (controller != null) {
-				this.view.interact(controller);
+			acceptorController = this.logic.getController();
+			if (acceptorController != null){
+				this.view.interact(acceptorController);
 			}
-		} while (controller != null);
+		} while (acceptorController != null); 
 	}
 	
 	public static void main(String[] args) {

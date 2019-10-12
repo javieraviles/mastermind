@@ -55,8 +55,26 @@ public class Game extends WithConsoleView {
 		return this.results.get(position).getWhites();
 	}
 
-	public int getRowLength() {
-		return Combination.getRowLength();
+	public int getWidth() {
+		return Combination.getWidth();
+	}
+
+	public Memento createMemento() {
+        Memento memento = new Memento(this.attempts);
+        for (int i = 0; i < this.proposedCombinations.size(); i++) {
+			memento.set(this.proposedCombinations.get(i).copy(), this.results.get(i).copy());
+		}
+        return memento;
+    }
+
+	public void restore(Memento memento) {
+		this.proposedCombinations = new ArrayList<ProposedCombination>();
+		this.results = new ArrayList<Result>();
+        this.attempts = memento.getAttempts();
+        for(int i=0; i<memento.getSize(); i++) {
+        	this.proposedCombinations.add(memento.getProposedCombination(i).copy());
+            this.results.add(memento.getResult(i).copy());
+        }
 	}
 
 }

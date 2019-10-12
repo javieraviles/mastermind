@@ -1,15 +1,15 @@
 package urjc.es.mastermind.views;
 
 import urjc.es.mastermind.models.Color;
-import urjc.es.mastermind.utils.Console;
+import urjc.es.mastermind.utils.WithConsoleView;
 
-public class ColorView {
+public class ColorView extends WithConsoleView {
 
-	public static final char[] INITIALS = { 'r', 'b', 'y', 'g', 'o', 'p' };
+	static final char[] INITIALS = { 'r', 'b', 'y', 'g', 'o', 'p' };
 
 	protected Color color;
 
-	public ColorView(Color color) {
+	ColorView(Color color) {
 		this.color = color;
 	}
 
@@ -20,22 +20,22 @@ public class ColorView {
 		}
 		return result;
 	}
-	
-	void write() {
-		new Console().write(ColorView.INITIALS[this.color.ordinal()]);
-	}
 
-	public char getInitial() {
+	char getInitial() {
 		return ColorView.INITIALS[this.color.ordinal()];
 	}
 
-	public static Color getInstance(char character) {
+	static Color getInstance(char character) {
 		for (int i = 0; i < ColorView.INITIALS.length; i++) {
 			if (ColorView.INITIALS[i] == character) {
 				return Color.values()[i];
 			}
 		}
 		return null;
+	}
+
+	void write() {
+		this.console.write(ColorView.INITIALS[this.color.ordinal()]);
 	}
 
 }

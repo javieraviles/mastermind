@@ -1,19 +1,18 @@
 package urjc.es.mastermind.views;
 
-import urjc.es.mastermind.controllers.ProposalController;
+import urjc.es.mastermind.controllers.InGameController;
 import urjc.es.mastermind.utils.WithConsoleView;
 
 public class AttemptsView extends WithConsoleView {
 
-	private ProposalController proposalController;
+	private InGameController inGameController;
 
-	AttemptsView(ProposalController proposalController) {
-		this.proposalController = proposalController;
+	AttemptsView(InGameController inGameController) {
+		this.inGameController = inGameController;
 	}
 
 	void writeln() {
-		this.console.writeln(MessageView.ATTEMPTS.getMessage().replaceFirst("#attempts",
-				"" + this.proposalController.getAttempts()));
+		MessageView.ATTEMPTS.writeln(this.inGameController.getAttempts());
 	}
 
 }

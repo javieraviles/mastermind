@@ -10,7 +10,7 @@ public class SecretCombination extends Combination {
 			this.colors.add(color);
 		}
 		Random random = new Random(System.currentTimeMillis());
-		final int erased = colors.size() - Combination.getRowLength();
+		final int erased = colors.size() - Combination.getWidth();
 		for (int i = 0; i < erased; i++) {
 			this.colors.remove(random.nextInt(this.colors.size()));
 		}

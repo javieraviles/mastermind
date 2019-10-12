@@ -3,20 +3,20 @@ package urjc.es.mastermind.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import urjc.es.mastermind.controllers.ProposalController;
+import urjc.es.mastermind.controllers.InGameController;
 import urjc.es.mastermind.models.Color;
 import urjc.es.mastermind.utils.WithConsoleView;
 
 public class ProposedCombinationView extends WithConsoleView {
 
-	private ProposalController proposalController;
+	private InGameController inGameController;
 
-	ProposedCombinationView(ProposalController proposalController) {
-		this.proposalController = proposalController;
+	ProposedCombinationView(InGameController inGameController) {
+		this.inGameController = inGameController;
 	}
 
 	void write(int position) {
-		for (Color color : this.proposalController.getColors(position)) {
+		for (Color color : this.inGameController.getColors(position)) {
 			new ColorView(color).write();
 		}
 	}

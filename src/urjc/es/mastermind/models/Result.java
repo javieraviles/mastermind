@@ -23,7 +23,11 @@ public class Result extends WithConsoleView {
 	}
 
 	boolean isWinner() {
-		return Combination.getRowLength() == this.blacks;
+		return Combination.getWidth() == this.blacks;
+	}
+
+	Result copy() {
+		return new Result(this.blacks, this.whites);
 	}
 
 }

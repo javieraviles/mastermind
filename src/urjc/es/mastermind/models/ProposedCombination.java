@@ -21,4 +21,8 @@ public class ProposedCombination extends Combination {
 		return false;
 	}
 
+	ProposedCombination copy() {
+		return new ProposedCombination(this.colors);
+	}
+
 }

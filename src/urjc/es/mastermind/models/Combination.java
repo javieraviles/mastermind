@@ -16,7 +16,7 @@ public abstract class Combination extends WithConsoleView {
 		this.colors = new ArrayList<Color>();
 	}
 	
-	public static int getRowLength() {
+	public static int getWidth() {
 		return Combination.ROW_LENGTH;
 	}
 	

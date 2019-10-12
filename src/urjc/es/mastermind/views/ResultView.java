@@ -1,20 +1,19 @@
 package urjc.es.mastermind.views;
 
-import urjc.es.mastermind.controllers.ProposalController;
-import urjc.es.mastermind.utils.WithConsoleView;
+import urjc.es.mastermind.controllers.InGameController;
 
-class ResultView extends WithConsoleView {
-	
-	private ProposalController proposalController;
-	
-	ResultView(ProposalController proposalController){
-		this.proposalController = proposalController;
+class ResultView {
+
+	private InGameController inGameController;
+
+	ResultView(InGameController inGameController) {
+		this.inGameController = inGameController;
 	}
 
-	void writeln(int i) {
-		this.console.writeln(MessageView.RESULT.getMessage()
-				.replaceFirst("#blacks", "" + this.proposalController.getBlacks(i))
-				.replaceFirst("#whites", "" + this.proposalController.getWhites(i)));
+	void writeln(int position) {
+		MessageView.RESULT.writeln(this.inGameController.getBlacks(position),
+				this.inGameController.getWhites(position));
+		;
 	}
 
 }

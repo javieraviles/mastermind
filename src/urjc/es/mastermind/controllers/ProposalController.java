@@ -5,24 +5,17 @@ import java.util.List;
 import urjc.es.mastermind.models.Color;
 import urjc.es.mastermind.models.Combination;
 import urjc.es.mastermind.models.Error;
-import urjc.es.mastermind.models.Game;
-import urjc.es.mastermind.models.State;
+import urjc.es.mastermind.models.Session;
 
 public class ProposalController extends Controller {
 
-	public ProposalController(Game game, State state) {
-		super(game, state);
-	}
-
-	@Override
-	public void accept(ControllerVisitor controllerVisitor) {
-		controllerVisitor.visit(this);
-
+	ProposalController(Session session) {
+		super(session);
 	}
 
 	public Error addProposedCombination(List<Color> colors) {
 		Error error = null;
-		if (colors.size() != Combination.getRowLength()) {
+		if (colors.size() != Combination.getWidth()) {
 			error = Error.WRONG_LENGTH;
 		} else {
 			for (int i = 0; i < colors.size(); i++) {
@@ -38,36 +31,36 @@ public class ProposalController extends Controller {
 			}
 		}
 		if (error == null) {
-			this.game.addProposedCombination(colors);
-			if (this.game.isWinner() || this.game.isLooser()) {
-				this.state.next();
+			this.session.addProposedCombination(colors);
+			if (this.session.isWinner() || this.session.isLooser()) {
+				this.session.next();
 			}
 		}
 		return error;
 	}
 
 	public int getAttempts() {
-		return this.game.getAttempts();
+		return this.session.getAttempts();
 	}
 
 	public boolean isLooser() {
-		return this.game.isLooser();
+		return this.session.isLooser();
 	}
 
 	public boolean isWinner() {
-		return this.game.isWinner();
+		return this.session.isWinner();
 	}
 
 	public int getBlacks(int position) {
-		return this.game.getBlacks(position);
+		return this.session.getBlacks(position);
 	}
 
 	public int getWhites(int position) {
-		return this.game.getWhites(position);
+		return this.session.getWhites(position);
 	}
 
 	public List<Color> getColors(int position) {
-		return this.game.getColors(position);
+		return this.session.getColors(position);
 	}
 
 }

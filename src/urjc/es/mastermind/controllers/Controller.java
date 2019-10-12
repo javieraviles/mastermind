@@ -1,23 +1,16 @@
 package urjc.es.mastermind.controllers;
 
-import urjc.es.mastermind.models.Game;
-import urjc.es.mastermind.models.State;
+import urjc.es.mastermind.models.Session;
 
 public abstract class Controller {
 
-	protected Game game;
-	protected State state;
+	protected Session session;
 
-	Controller(Game game, State state) {
-		this.game = game;
-		this.state = state;
+	Controller(Session session) {
+		this.session = session;
 	}
 
-	public abstract void accept(ControllerVisitor controllerVisitor);
-	
-	public int getRowLength() {
-		return this.game.getRowLength();
+	public int getWidth() {
+		return this.session.getWidth();
 	}
-
-
 }

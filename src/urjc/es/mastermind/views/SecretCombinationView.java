@@ -1,9 +1,8 @@
 package urjc.es.mastermind.views;
 
 import urjc.es.mastermind.controllers.Controller;
-import urjc.es.mastermind.utils.WithConsoleView;
 
-class SecretCombinationView extends WithConsoleView {
+class SecretCombinationView {
 
 	private Controller controller;
 
@@ -13,10 +12,10 @@ class SecretCombinationView extends WithConsoleView {
 	}
 
 	void writeln() {
-		for (int i = 0; i < this.controller.getRowLength(); i++) {
-			this.console.write(MessageView.SECRET.getMessage());
+		for (int i = 0; i < this.controller.getWidth(); i++) {
+			MessageView.SECRET.write();
 		}
-		this.console.writeln();
+		MessageView.NEW_LINE.writeln();
 	}
 
 }
