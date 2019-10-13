@@ -2,6 +2,7 @@ package urjc.es.mastermind.controllers.implementation;
 
 import java.util.List;
 
+import urjc.es.mastermind.controllers.ExitController;
 import urjc.es.mastermind.controllers.InGameController;
 import urjc.es.mastermind.controllers.ProposalController;
 import urjc.es.mastermind.controllers.RedoController;
@@ -17,12 +18,14 @@ public class InGameControllerImpl extends InGameController {
 		this.proposalController = new ProposalController(session);
 		this.undoController = new UndoController(session);
 		this.redoController = new RedoController(session);
+		this.exitController = new ExitController(session);
 	}
 
 	private ProposalController proposalController;
 	private UndoController undoController;
 	private RedoController redoController;
-	
+	private ExitController exitController;
+
 	@Override
 	public void undo() {
 		this.undoController.undo();
@@ -76,6 +79,11 @@ public class InGameControllerImpl extends InGameController {
 	@Override
 	public Error addProposedCombination(List<Color> colors) {
 		return this.proposalController.addProposedCombination(colors);
+	}
+
+	@Override
+	public void next() {
+		this.exitController.next();
 	}
 
 }

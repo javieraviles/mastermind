@@ -34,6 +34,8 @@ public abstract class InGameController extends AcceptorController {
 
 	public abstract Error addProposedCombination(List<Color> colors);
 
+	public abstract void next();
+
 	@Override
 	public void accept(ControllerVisitor controllerVisitor) {
 		controllerVisitor.visit(this);

@@ -1,6 +1,8 @@
-package urjc.es.mastermind.views;
+package urjc.es.mastermind.views.menus;
 
 import urjc.es.mastermind.controllers.InGameController;
+import urjc.es.mastermind.views.GameView;
+import urjc.es.mastermind.views.MessageView;
 
 public class UndoCommand extends Command {
 
@@ -10,12 +12,12 @@ public class UndoCommand extends Command {
 
 	@Override
 	protected void execute() {
-		this.inGameController.undo();
-		new GameView(this.inGameController);
+		((InGameController) this.acceptorController).undo();
+		new GameView((InGameController) this.acceptorController);
 	}
 
 	@Override
 	protected boolean isActive() {
-		return this.inGameController.undoable();
+		return ((InGameController) this.acceptorController).undoable();
 	}
 }

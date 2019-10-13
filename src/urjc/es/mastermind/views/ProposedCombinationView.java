@@ -11,7 +11,7 @@ public class ProposedCombinationView extends WithConsoleView {
 
 	private InGameController inGameController;
 
-	ProposedCombinationView(InGameController inGameController) {
+	public ProposedCombinationView(InGameController inGameController) {
 		this.inGameController = inGameController;
 	}
 
@@ -21,7 +21,7 @@ public class ProposedCombinationView extends WithConsoleView {
 		}
 	}
 
-	List<Color> read() {
+	public List<Color> read() {
 		String characters = this.console.readString(MessageView.PROPOSED_COMBINATION.getMessage());
 		List<Color> colors = new ArrayList<Color>();
 		for (int i = 0; i < characters.length(); i++) {

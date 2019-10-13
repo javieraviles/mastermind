@@ -6,4 +6,8 @@ public interface Session {
 
 	public abstract StateValue getValueState();
 
+	String getName();
+
+	void setName(String title);
+
 }

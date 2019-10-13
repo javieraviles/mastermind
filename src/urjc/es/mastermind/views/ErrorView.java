@@ -20,7 +20,7 @@ public class ErrorView {
 	public String getMessage() {
 		return ErrorView.MESSAGES[this.error.ordinal()];
 	}
-	void writeln() {
+	public void writeln() {
 		new Console().writeln(ErrorView.MESSAGES[this.error.ordinal()]);
 	}	
 }

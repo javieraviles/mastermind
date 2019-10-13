@@ -5,11 +5,11 @@ import urjc.es.mastermind.distributed.dispatchers.DispatcherPrototype;
 public class MastermindServer {
 	private DispatcherPrototype dispatcherPrototype;
 
-    private LogicImplementationServer logicServer;
+    private LogicImplServer logicServer;
 
     private MastermindServer() {
         this.dispatcherPrototype = new DispatcherPrototype();
-        this.logicServer = new LogicImplementationServer();
+        this.logicServer = new LogicImplServer();
         this.logicServer.createDispatchers(this.dispatcherPrototype);
     }
 

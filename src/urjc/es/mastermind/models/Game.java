@@ -1,5 +1,8 @@
 package urjc.es.mastermind.models;
 
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +78,38 @@ public class Game extends WithConsoleView {
         	this.proposedCombinations.add(memento.getProposedCombination(i).copy());
             this.results.add(memento.getResult(i).copy());
         }
+	}
+	
+	void save(FileWriter fileWriter) {
+		try {
+			fileWriter.write(this.attempts + "\n");
+			this.secretCombination.save(fileWriter);
+			for (int i = 0; i < this.attempts; i++) {
+				this.proposedCombinations.get(i).save(fileWriter);
+				this.results.get(i).save(fileWriter);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	void load(BufferedReader bufferedReader) {
+		try {
+			this.attempts = Integer.parseInt(bufferedReader.readLine());
+			this.secretCombination.load(bufferedReader);
+			for (int i = 0; i < this.attempts; i++) {
+				ProposedCombination proposedCombination = new ProposedCombination();
+				proposedCombination.load(bufferedReader);
+				this.proposedCombinations.add(proposedCombination);
+				Result result = new Result();
+				result.load(bufferedReader);
+				this.results.add(result);
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

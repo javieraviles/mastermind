@@ -23,4 +23,14 @@ public class SessionProxy implements Session {
 		return StateValue.values()[this.tcpip.receiveInt()];
 	}
 
+	public String getName() {
+		this.tcpip.send(FrameType.GETTITLE.name());
+		return this.tcpip.receiveLine();
+	}
+
+	public void setName(String title) {
+		this.tcpip.send(FrameType.SETTITLE.name());
+		this.tcpip.send(title);
+	}
+
 }

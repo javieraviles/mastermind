@@ -3,7 +3,7 @@ package urjc.es.mastermind.utils;
 public abstract class Command extends WithConsoleView {
 
 	protected String title;
-	
+
 	protected Command(String title) {
 		this.title = title;
 	}

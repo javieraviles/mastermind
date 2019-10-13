@@ -3,6 +3,9 @@ package urjc.es.mastermind.models;
 import java.util.List;
 
 public class ProposedCombination extends Combination {
+	
+	public ProposedCombination() {
+	}
 
 	public ProposedCombination(List<Color> colors) {
 		this.colors = colors;

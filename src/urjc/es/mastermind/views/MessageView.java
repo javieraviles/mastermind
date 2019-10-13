@@ -14,10 +14,15 @@ public enum MessageView {
 	PROPOSE_COMMAND("Propose Combination"), 
 	UNDO_COMMAND("Undo previous Proposal"), 
 	REDO_COMMAND("Redo previous Proposal"), 
-	NEW_LINE("");
+	NEW_LINE(""),
+	NEWGAME_COMMAND("Start a new game"),
+	EXIT_COMMAND("Exit game"),
+	OPENGAME_COMMAND("Open a saved game"),
+	PROPOSAL_EXISTS("The proposed name already exists"),
+	NAME("Name: "),
+	SAVE("Do you want to save the game?");
 
 	private String message;
-
 	private Console console;
 
 	private MessageView(String message) {

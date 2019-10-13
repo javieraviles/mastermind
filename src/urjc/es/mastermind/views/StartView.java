@@ -1,17 +1,13 @@
 package urjc.es.mastermind.views;
 
 import urjc.es.mastermind.controllers.StartController;
-import urjc.es.mastermind.utils.WithConsoleView;
+import urjc.es.mastermind.views.menus.StartMenu;
 
-class StartView extends WithConsoleView {
-
-	private SecretCombinationView secretCombinationView;
+class StartView {
 
 	void interact(StartController startController) {
-		startController.start();
-		this.console.writeln(MessageView.TITLE.getMessage());
-		this.secretCombinationView = new SecretCombinationView(startController);
-		this.secretCombinationView.writeln();
+		MessageView.TITLE.writeln();
+		new StartMenu(startController).execute();
 	}
 
 }

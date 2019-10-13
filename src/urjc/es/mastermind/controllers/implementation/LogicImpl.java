@@ -9,16 +9,19 @@ public class LogicImpl extends Logic {
 	protected StartControllerImpl startControllerImpl;
 	protected InGameControllerImpl inGameControllerImpl;
 	protected ResumeControllerImpl resumeControllerImpl;
+	protected SaveControllerImpl saveControllerImpl;
 
 	public LogicImpl() {
 		this.session = new SessionImpl();
 		this.startControllerImpl = new StartControllerImpl(this.session);
 		this.inGameControllerImpl = new InGameControllerImpl(this.session);
 		this.resumeControllerImpl = new ResumeControllerImpl(this.session);
+		this.saveControllerImpl = new SaveControllerImpl(this.session);
 		this.controllers.put(StateValue.INITIAL, new StartControllerImpl(this.session));
 		this.controllers.put(StateValue.IN_GAME, new InGameControllerImpl(this.session));
 		this.controllers.put(StateValue.FINAL, new ResumeControllerImpl(this.session));
 		this.controllers.put(StateValue.EXIT, null);
+        this.controllers.put(StateValue.SAVING, this.saveControllerImpl);
 	}
 
 }

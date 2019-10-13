@@ -3,8 +3,14 @@ package urjc.es.mastermind.views;
 import urjc.es.mastermind.controllers.InGameController;
 
 public class GameView {
-	
-	GameView(InGameController inGameController) {
+
+	private InGameController inGameController;
+
+	public GameView(InGameController inGameController) {
+		this.inGameController = inGameController;
+	}
+
+	public void writeln() {
 		MessageView.NEW_LINE.writeln();
 		new AttemptsView(inGameController).writeln();
 		new SecretCombinationView(inGameController).writeln();
@@ -18,5 +24,5 @@ public class GameView {
 			MessageView.LOOSER.writeln();
 		}
 	}
-	
+
 }

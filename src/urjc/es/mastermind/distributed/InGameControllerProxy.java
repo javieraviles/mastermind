@@ -96,4 +96,9 @@ public class InGameControllerProxy extends InGameController {
 		return error;
 	}
 
+	@Override
+	public void next() {
+		this.tcpip.send(FrameType.NEXT.name());
+	}
+
 }
