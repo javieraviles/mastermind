@@ -3,21 +3,25 @@ package urjc.es.mastermind.controllers.implementation;
 import urjc.es.mastermind.controllers.SaveController;
 import urjc.es.mastermind.models.Session;
 import urjc.es.mastermind.models.SessionImpl;
+import urjc.es.mastermind.models.DAO.SessionImplDAO;
 
 public class SaveControllerImpl extends SaveController {
 
-	SaveControllerImpl(Session session) {
+	private final SessionImplDAO sessionImplDAO;
+
+	SaveControllerImpl(Session session, SessionImplDAO sessionImplDAO) {
 		super(session);
+		this.sessionImplDAO = sessionImplDAO;
 	}
 
 	@Override
 	public void save(String name) {
-		((SessionImpl) this.session).save(name);
+		this.sessionImplDAO.save(name);
 	}
 
 	@Override
 	public void save() {
-		((SessionImpl) this.session).save();
+		this.sessionImplDAO.save();
 	}
 
 	@Override
@@ -32,7 +36,7 @@ public class SaveControllerImpl extends SaveController {
 
 	@Override
 	public boolean exists(String name) {
-		return ((SessionImpl) this.session).exists(name);
+		return this.sessionImplDAO.exists(name);
 	}
 
 }

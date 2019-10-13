@@ -1,9 +1,5 @@
 package urjc.es.mastermind.models;
 
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import urjc.es.mastermind.utils.WithConsoleView;
 
 public class Result extends WithConsoleView {
@@ -21,12 +17,20 @@ public class Result extends WithConsoleView {
 		this.whites = whites;
 	}
 
-	int getBlacks() {
+	public int getBlacks() {
 		return this.blacks;
 	}
 
-	int getWhites() {
+	public int getWhites() {
 		return this.whites;
+	}
+
+	public void setBlacks(int blacks) {
+		this.blacks = blacks;
+	}
+
+	public void setWhites(int whites) {
+		this.whites = whites;
 	}
 
 	boolean isWinner() {
@@ -35,24 +39,6 @@ public class Result extends WithConsoleView {
 
 	Result copy() {
 		return new Result(this.blacks, this.whites);
-	}
-
-	void save(FileWriter fileWriter) {
-		try {
-			fileWriter.write(this.blacks + "\n");
-			fileWriter.write(this.whites + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	void load(BufferedReader bufferedReader) {
-		try {
-			this.blacks = Integer.parseInt(bufferedReader.readLine());
-			this.whites = Integer.parseInt(bufferedReader.readLine());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
