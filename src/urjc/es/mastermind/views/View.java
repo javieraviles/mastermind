@@ -6,7 +6,7 @@ import urjc.es.mastermind.controllers.InGameController;
 import urjc.es.mastermind.controllers.ResumeController;
 import urjc.es.mastermind.controllers.StartController;
 
-public abstract class View implements ControllerVisitor {
+public class View implements ControllerVisitor {
 
 	private StartView startView;
 
