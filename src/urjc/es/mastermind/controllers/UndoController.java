@@ -1,19 +1,20 @@
 package urjc.es.mastermind.controllers;
 
 import urjc.es.mastermind.models.Session;
+import urjc.es.mastermind.models.SessionImpl;
 
 public class UndoController extends Controller {
 
-	UndoController(Session session) {
+	public UndoController(Session session) {
 		super(session);
 	}
 
-	void undo() {
-		this.session.undo();
+	public void undo() {
+		((SessionImpl) this.session).undo();
 	}
 
-	boolean undoable() {
-		return this.session.undoable();
+	public boolean undoable() {
+		return ((SessionImpl) this.session).undoable();
 	}
 
 }

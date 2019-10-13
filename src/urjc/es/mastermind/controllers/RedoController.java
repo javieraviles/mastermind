@@ -1,6 +1,7 @@
 package urjc.es.mastermind.controllers;
 
 import urjc.es.mastermind.models.Session;
+import urjc.es.mastermind.models.SessionImpl;
 
 public class RedoController extends Controller {
 
@@ -8,12 +9,12 @@ public class RedoController extends Controller {
 		super(session);
 	}
 
-	void redo() {
-		this.session.redo();
+	public void redo() {
+		((SessionImpl) this.session).redo();
 	}
 
-	boolean redoable() {
-		return this.session.redoable();
+	public boolean redoable() {
+		return ((SessionImpl) this.session).redoable();
 	}
 
 }

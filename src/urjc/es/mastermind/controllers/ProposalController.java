@@ -6,10 +6,11 @@ import urjc.es.mastermind.models.Color;
 import urjc.es.mastermind.models.Combination;
 import urjc.es.mastermind.models.Error;
 import urjc.es.mastermind.models.Session;
+import urjc.es.mastermind.models.SessionImpl;
 
 public class ProposalController extends Controller {
 
-	ProposalController(Session session) {
+	public ProposalController(Session session) {
 		super(session);
 	}
 
@@ -31,36 +32,36 @@ public class ProposalController extends Controller {
 			}
 		}
 		if (error == null) {
-			this.session.addProposedCombination(colors);
-			if (this.session.isWinner() || this.session.isLooser()) {
-				this.session.next();
+			((SessionImpl) this.session).addProposedCombination(colors);
+			if (((SessionImpl) this.session).isWinner() || ((SessionImpl) this.session).isLooser()) {
+				((SessionImpl) this.session).next();
 			}
 		}
 		return error;
 	}
 
 	public int getAttempts() {
-		return this.session.getAttempts();
+		return ((SessionImpl) this.session).getAttempts();
 	}
 
 	public boolean isLooser() {
-		return this.session.isLooser();
+		return ((SessionImpl) this.session).isLooser();
 	}
 
 	public boolean isWinner() {
-		return this.session.isWinner();
+		return ((SessionImpl) this.session).isWinner();
 	}
 
 	public int getBlacks(int position) {
-		return this.session.getBlacks(position);
+		return ((SessionImpl) this.session).getBlacks(position);
 	}
 
 	public int getWhites(int position) {
-		return this.session.getWhites(position);
+		return ((SessionImpl) this.session).getWhites(position);
 	}
 
 	public List<Color> getColors(int position) {
-		return this.session.getColors(position);
+		return ((SessionImpl) this.session).getColors(position);
 	}
 
 }
