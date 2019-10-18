@@ -20,10 +20,6 @@ public class ColorView {
 		}
 		return result;
 	}
-	
-	void write() {
-		new Console().write(ColorView.INITIALS[this.color.ordinal()]);
-	}
 
 	public char getInitial() {
 		return ColorView.INITIALS[this.color.ordinal()];
@@ -36,6 +32,10 @@ public class ColorView {
 			}
 		}
 		return null;
+	}
+
+	public void write() {
+		new Console().write(ColorView.INITIALS[this.color.ordinal()]);
 	}
 
 }
